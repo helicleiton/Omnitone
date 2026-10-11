@@ -49,6 +49,10 @@
   .contact button { padding:12px 22px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#16171a; font:inherit; font-weight:600; cursor:pointer; }
   .contact .or { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:14px; color:var(--dim); font-size:14px; }
   .btn.whats { border-color:#25d366; color:#25d366; padding:10px 18px; }
+  .contact.report { margin-top:14px; } .contact.report form { flex-direction:column; }
+  .contact textarea { padding:12px 14px; border-radius:6px; border:1px solid var(--edge); background:var(--bg); color:var(--text); font:inherit; resize:vertical; }
+  .contact textarea:focus { outline:none; border-color:var(--accent); }
+  .contact.report input { flex:0 0 auto; } .contact.report button { align-self:flex-start; }
   .contact .done { color:var(--accent); font-weight:600; margin:0; }
   footer { margin:64px 0 40px; padding-top:22px; border-top:1px solid var(--edge); color:var(--dim); font-size:13px; }
 </style>
@@ -59,7 +63,7 @@
 <header>
   <div class="mark"><i></i><div><b>OMNI</b><span>TONE</span></div></div>
   <nav>
-    <a href="#recursos">Recursos</a><a href="#timbres">Timbres</a><a href="#instalar">Instalar</a><a href="#contato">Contato</a>
+    <a href="#recursos">Recursos</a><a href="#timbres">Timbres</a><a href="#instalar">Instalar</a><a href="#contato">Contato</a><a href="#problemas">Relatar problema</a>
   </nav>
 </header>
 
@@ -133,11 +137,20 @@
   <li>Fotos dos equipamentos vao em <code>Documentos\Omnitone\User\Images</code>, com o nome do timbre ou da origem.</li>
 </ul>
 
-<h2>Estado do projeto</h2>
-<p>Esta e a primeira versao publica. Foi desenvolvida e verificada em um unico computador, entao pode haver falhas em outras maquinas e configuracoes de audio. Se algo nao funcionar, <a href="https://github.com/helicleiton/Omnitone/issues">abra um relato no GitHub</a> dizendo o que aconteceu, a sua versao do Windows e a sua interface de audio.</p>
+<h2 id="problemas">Relatar um problema</h2>
+<p>O Omnitone esta nas primeiras versoes e foi desenvolvido e verificado em um unico computador, entao pode haver falhas em outras maquinas e configuracoes de audio. Se algo nao funcionar, conte o que aconteceu: cada relato ajuda a corrigir.</p>
+<div class="contact report">
+  <form id="relato">
+    <textarea name="oque" rows="4" placeholder="O que aconteceu? O que voce estava fazendo na hora?" required aria-label="O que aconteceu"></textarea>
+    <input type="text" name="windows" placeholder="Versao do Windows (ex.: Windows 11)" aria-label="Versao do Windows">
+    <input type="text" name="audio" placeholder="Interface ou placa de audio (ex.: Realtek, Focusrite)" aria-label="Interface de audio">
+    <button type="submit">Enviar pelo WhatsApp</button>
+  </form>
+  <p class="note" style="margin:12px 0 0">O botao abre o WhatsApp com o relato ja escrito; e so enviar. Se preferir, tambem da para <a href="https://github.com/helicleiton/Omnitone/issues">abrir um relato no GitHub</a>.</p>
+</div>
 
 <h2>Creditos</h2>
-<p>O Omnitone e gratuito e sempre sera. Usa JUCE, sfizz, o nucleo FM do music-synthesizer-for-android, TinySoundFont e o ASIO SDK da Steinberg.</p>
+<p>O Omnitone e gratuito e sempre sera. Usa JUCE, sfizz, o nucleo FM do music-synthesizer-for-android, TinySoundFont e o VST 3 SDK da Steinberg.</p>
 <p class="note">Os nomes de instrumentos e fabricantes citados no app e nesta pagina pertencem aos seus donos e servem apenas para indicar o tipo de som em que um timbre se inspira. O Omnitone nao e afiliado nem endossado por nenhuma dessas empresas. Este projeto nao tem relacao com a biblioteca de audio espacial "Omnitone" do Google. ASIO e VST sao marcas da Steinberg Media Technologies GmbH.</p>
 
 <footer>Desenvolvido por @helicleiton &middot; <a href="https://github.com/helicleiton/Omnitone">github.com/helicleiton/Omnitone</a></footer>
@@ -148,6 +161,16 @@
   document.getElementById('cadastro').addEventListener('submit', function () {
     var form = this;
     setTimeout(function () { form.hidden = true; document.getElementById('obrigado').hidden = false; }, 400);
+  });
+
+  // Relato de problema: monta a mensagem e abre o WhatsApp com ela pronta.
+  document.getElementById('relato').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var f = this.elements;
+    var text = 'Relato de problema - Omnitone\n\n' + f.oque.value.trim()
+             + '\n\nWindows: ' + (f.windows.value.trim() || 'nao informado')
+             + '\nAudio: ' + (f.audio.value.trim() || 'nao informado');
+    window.open('https://wa.me/5585994252561?text=' + encodeURIComponent(text), '_blank', 'noopener');
   });
 </script>
 </body>
