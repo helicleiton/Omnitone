@@ -41,6 +41,15 @@
   .warn { border-left:3px solid var(--accent); background:var(--panel); padding:16px 20px; border-radius:0 6px 6px 0; }
   .warn h3 { margin:0 0 6px; font-size:16px; } .warn p { margin:6px 0 0; color:var(--dim); font-size:15px; }
   code { background:#0b0c0d; border:1px solid var(--edge); border-radius:4px; padding:1px 6px; font-size:14px; }
+  .contact { background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:22px 24px; margin-top:34px; }
+  .contact h3 { margin:0 0 4px; font-size:19px; } .contact p { margin:0 0 14px; color:var(--dim); font-size:15px; }
+  .contact form { display:flex; gap:8px; flex-wrap:wrap; }
+  .contact input { flex:1 1 240px; min-width:0; padding:12px 14px; border-radius:6px; border:1px solid var(--edge); background:var(--bg); color:var(--text); font:inherit; }
+  .contact input:focus { outline:none; border-color:var(--accent); }
+  .contact button { padding:12px 22px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#16171a; font:inherit; font-weight:600; cursor:pointer; }
+  .contact .or { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:14px; color:var(--dim); font-size:14px; }
+  .btn.whats { border-color:#25d366; color:#25d366; padding:10px 18px; }
+  .contact .done { color:var(--accent); font-weight:600; margin:0; }
   footer { margin:64px 0 40px; padding-top:22px; border-top:1px solid var(--edge); color:var(--dim); font-size:13px; }
 </style>
 </head>
@@ -50,7 +59,7 @@
 <header>
   <div class="mark"><i></i><div><b>OMNI</b><span>TONE</span></div></div>
   <nav>
-    <a href="#recursos">Recursos</a><a href="#timbres">Timbres</a><a href="#instalar">Instalar</a>
+    <a href="#recursos">Recursos</a><a href="#timbres">Timbres</a><a href="#instalar">Instalar</a><a href="#contato">Contato</a>
   </nav>
 </header>
 
@@ -63,6 +72,22 @@
   </div>
   <p class="note">Versao 0.2.0 &middot; 8 MB &middot; Windows 10 e 11 de 64 bits &middot; aplicativo e plugin VST3 &middot; gratuito, hoje e sempre</p>
   <div class="shot"><img src="screenshot.png" alt="Tela principal do Omnitone: visor, mesa de 8 camadas com faders e VUs, controles de timbre e teclado"></div>
+
+  <div class="contact" id="contato">
+    <h3>Receba as novidades do Omnitone</h3>
+    <p>Deixe seu e-mail para ser avisado de novas versoes e de novos timbres. O Omnitone e gratuito e sempre sera.</p>
+    <form id="cadastro" action="https://docs.google.com/forms/d/e/1FAIpQLSeYjzxNaQPjspnp7MyDBh27ei1yu_zJ6FeaLz9SQ11py8xYOg/formResponse" method="post" target="envio">
+      <input type="email" name="entry.370425522" placeholder="seu e-mail" required autocomplete="email" aria-label="Seu e-mail">
+      <button type="submit">Cadastrar</button>
+    </form>
+    <p class="done" id="obrigado" hidden>E-mail cadastrado. Obrigado!</p>
+    <div class="or">
+      <span>Prefere WhatsApp? Fale direto comigo:</span>
+      <a class="btn whats" href="https://wa.me/5585994252561?text=Ol%C3%A1!%20Quero%20receber%20novidades%20do%20Omnitone." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+    <p class="note" style="margin:12px 0 0">Seu contato e usado so para avisos sobre o Omnitone.</p>
+    <iframe name="envio" title="envio" hidden></iframe>
+  </div>
 </section>
 
 <h2 id="recursos">Recursos</h2>
@@ -118,5 +143,12 @@
 <footer>Desenvolvido por @helicleiton &middot; <a href="https://github.com/helicleiton/Omnitone">github.com/helicleiton/Omnitone</a></footer>
 
 </div>
+<script>
+  // O cadastro vai para o formulario num iframe oculto; a pagina so mostra o agradecimento.
+  document.getElementById('cadastro').addEventListener('submit', function () {
+    var form = this;
+    setTimeout(function () { form.hidden = true; document.getElementById('obrigado').hidden = false; }, 400);
+  });
+</script>
 </body>
 </html>
