@@ -55,7 +55,7 @@
   .contact textarea:focus { outline:none; border-color:var(--accent); }
   .contact.report input { flex:0 0 auto; } .contact.report button { align-self:flex-start; }
   .contact .done { color:var(--accent); font-weight:600; margin:0; }
-  .demos { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:12px; }
+  .demos { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr)); gap:12px; }
   .demo { background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:16px 16px 14px; }
   .demo-head { display:flex; align-items:center; gap:14px; }
   .demo-head h3 { margin:0; font-size:18px; } .demo-style { color:var(--dim); font-size:13px; }
@@ -63,8 +63,8 @@
   .demo-play.on { background:transparent; color:var(--accent); }
   .demo-bar { height:3px; background:var(--edge); border-radius:2px; margin:14px 0 12px; overflow:hidden; } .demo-bar i { display:block; height:100%; width:0; background:var(--accent); }
   /* Mesa de som: um canal por timbre, mais o master. */
-  .desk { display:flex; gap:6px; align-items:stretch; background:#0c0d0f; border:1px solid var(--edge); border-radius:6px; padding:8px; overflow-x:auto; }
-  .strip { flex:1 1 0; min-width:52px; display:flex; flex-direction:column; align-items:center; gap:8px; background:linear-gradient(#1c1e22,#141518); border:1px solid var(--edge); border-radius:5px; padding:8px 4px 7px; }
+  .desk { display:flex; gap:4px; align-items:stretch; background:#0c0d0f; border:1px solid var(--edge); border-radius:6px; padding:6px; overflow-x:auto; }
+  .strip { flex:1 1 0; min-width:46px; display:flex; flex-direction:column; align-items:center; gap:8px; background:linear-gradient(#1c1e22,#141518); border:1px solid var(--edge); border-radius:5px; padding:8px 4px 7px; }
   .strip.master { background:linear-gradient(#24262b,#17181b); border-color:#3a3d44; margin-left:4px; }
   .strip-buttons { display:flex; gap:4px; min-height:22px; }
   .strip-btn { width:22px; height:22px; border-radius:50%; border:1px solid #3a3d44; background:#0f1012; color:var(--dim); font:inherit; font-size:11px; font-weight:700; line-height:1; cursor:pointer; padding:0; }
@@ -85,7 +85,7 @@
   .strip.master .fader input::-moz-range-thumb { background:linear-gradient(#ff8a66 0 42%,#16171a 42% 58%,#ff6a3d 58%); }
   .fader input:focus-visible { outline:1px solid var(--accent); outline-offset:1px; }
   .strip-label { width:100%; text-align:center; background:#e9e7e2; color:#16171a; border-radius:2px; padding:3px 2px; min-height:34px; display:flex; flex-direction:column; justify-content:center; }
-  .strip-label b { display:block; font-size:10.5px; line-height:1.15; text-transform:uppercase; letter-spacing:.03em; }
+  .strip-label b { display:block; font-size:9.5px; line-height:1.15; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; }
   .strip-label span { display:block; font-size:8.5px; line-height:1.15; color:#4a4c52; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
   .strip.master .strip-label { background:var(--accent); }
   footer { margin:64px 0 40px; padding-top:22px; border-top:1px solid var(--edge); color:var(--dim); font-size:13px; }
