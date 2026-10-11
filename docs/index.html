@@ -55,6 +55,18 @@
   .contact textarea:focus { outline:none; border-color:var(--accent); }
   .contact.report input { flex:0 0 auto; } .contact.report button { align-self:flex-start; }
   .contact .done { color:var(--accent); font-weight:600; margin:0; }
+  .demos { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; }
+  .demo { background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:16px 18px 14px; }
+  .demo-head { display:flex; align-items:center; gap:14px; }
+  .demo-head h3 { margin:0; font-size:18px; } .demo-style { color:var(--dim); font-size:13px; }
+  .demo-play { min-width:104px; padding:10px 14px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#16171a; font:inherit; font-weight:600; cursor:pointer; }
+  .demo-play.on { background:transparent; color:var(--accent); }
+  .demo-bar { height:3px; background:var(--edge); border-radius:2px; margin:14px 0 8px; overflow:hidden; } .demo-bar i { display:block; height:100%; width:0; background:var(--accent); }
+  .track { display:flex; align-items:center; gap:8px; padding:7px 0; border-top:1px solid var(--edge); }
+  .track-names { flex:1 1 auto; min-width:0; } .track-names b { display:block; font-size:14px; } .track-names span { display:block; color:var(--dim); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .track-meter { flex:0 0 64px; height:6px; background:var(--bg); border:1px solid var(--edge); border-radius:3px; overflow:hidden; } .track-meter i { display:block; height:100%; width:0; background:var(--accent); }
+  .track-btn { flex:0 0 28px; height:26px; border-radius:5px; border:1px solid var(--edge); background:var(--bg); color:var(--dim); font:inherit; font-size:12px; font-weight:700; cursor:pointer; }
+  .track-btn.on { border-color:var(--accent); background:var(--accent); color:#16171a; }
   footer { margin:64px 0 40px; padding-top:22px; border-top:1px solid var(--edge); color:var(--dim); font-size:13px; }
 </style>
 </head>
@@ -64,7 +76,7 @@
 <header>
   <div class="mark"><i></i><div><b>OMNI</b><span>TONE</span></div></div>
   <nav>
-    <a href="#recursos">Recursos</a><a href="#timbres">Timbres</a><a href="#instalar">Instalar</a><a href="#contato">Contato</a><a href="#problemas">Relatar problema</a>
+    <a href="#recursos">Recursos</a><a href="#timbres">Timbres</a><a href="#demos">Demos</a><a href="#instalar">Instalar</a><a href="#contato">Contato</a><a href="#problemas">Relatar problema</a>
   </nav>
 </header>
 
@@ -116,6 +128,144 @@
   <tr><td>Bancos FM</td><td>Voce instala</td><td>Bancos .syx de 32 vozes no formato DX7 e colecoes de vozes de 4 operadores no formato Reface DX.</td></tr>
 </table>
 <p class="note">O Omnitone nao distribui bibliotecas de amostras, SoundFonts, bancos de vozes nem fotos de terceiros. Cada um tem a sua licenca.</p>
+
+<h2 id="demos">Demos</h2>
+<p>Quatro musicas curtas feitas so com timbres que ja vem no Omnitone. Cada faixa e um timbre: toque a musica e use <b>M</b> (mudo) e <b>S</b> (solo) para ouvir cada um separado.</p>
+<div class="demos" id="lista-demos"></div>
+<p class="note">As demos sao composicoes originais, tocadas e mixadas pelo proprio Omnitone, sem amostras nem efeitos de fora.</p>
+
+<script>
+(function () {
+  var demos = [
+    { id: 'noite-neon', title: 'Noite Neon', style: 'Synthwave', tracks: [
+      ['Pad', 'Wide Poly - Pad'], ['Baixo', 'Chorus Poly Vintage - Bass'], ['Arpejo', 'Chorus Poly Vintage - Pluck'],
+      ['Solo', 'Retro Night Lead'], ['Bateria', 'Drum Kit - Punch'] ] },
+    { id: 'domingo', title: 'Domingo', style: 'Gospel', tracks: [
+      ['Orgao', 'Tonewheel Gospel'], ['Baixo', 'Pedal Synth - Pedals'], ['Piano eletrico', 'Reed E.Piano'],
+      ['Bateria', 'Drum Kit - Vintage Box'] ] },
+    { id: 'horizonte', title: 'Horizonte', style: 'Trilha', tracks: [
+      ['Cordas', 'String Ensemble - Strings'], ['Cordas de fita', 'Tape Strings'], ['Pad de vidro', 'Workstation - Glass Pad'],
+      ['Teclas', 'Workstation - Crystal Keys'], ['Sub-grave', 'Ladder Mono - Sub Bass'] ] },
+    { id: 'garagem', title: 'Garagem', style: 'Funk', tracks: [
+      ['Clavinet', 'Funk Clav'], ['Baixo', 'Duo Synth - Bass'], ['Metais', 'Workstation - Big Brass'],
+      ['Bateria', 'Drum Kit - Punch'] ] }
+  ];
+
+  var list = document.getElementById('lista-demos');
+  var AudioCtx = window.AudioContext || window.webkitAudioContext;
+  var ctx = null, playing = null;   // playing: a demo que esta tocando
+
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+
+  demos.forEach(function (demo) {
+    var card = el('div', 'demo');
+    var head = el('div', 'demo-head');
+    var play = el('button', 'demo-play', 'Tocar');
+    play.type = 'button';
+    var titles = el('div');
+    titles.appendChild(el('h3', '', demo.title));
+    titles.appendChild(el('span', 'demo-style', demo.style));
+    head.appendChild(play); head.appendChild(titles);
+    card.appendChild(head);
+
+    var bar = el('div', 'demo-bar'); var fill = el('i'); bar.appendChild(fill); card.appendChild(bar);
+
+    demo.rows = demo.tracks.map(function (track) {
+      var row = el('div', 'track');
+      var names = el('div', 'track-names');
+      names.appendChild(el('b', '', track[0]));
+      names.appendChild(el('span', '', track[1]));
+      var meter = el('div', 'track-meter'); var level = el('i'); meter.appendChild(level);
+      var mute = el('button', 'track-btn', 'M'); mute.type = 'button'; mute.title = 'Mudo'; mute.setAttribute('aria-label', 'Mudo: ' + track[0]);
+      var solo = el('button', 'track-btn', 'S'); solo.type = 'button'; solo.title = 'Solo'; solo.setAttribute('aria-label', 'Solo: ' + track[0]);
+      row.appendChild(names); row.appendChild(meter); row.appendChild(mute); row.appendChild(solo);
+      card.appendChild(row);
+      var state = { mute: false, solo: false, level: level, muteBtn: mute, soloBtn: solo, gain: null, analyser: null };
+      mute.addEventListener('click', function () { state.mute = !state.mute; mute.classList.toggle('on', state.mute); applyGains(demo); });
+      solo.addEventListener('click', function () { state.solo = !state.solo; solo.classList.toggle('on', state.solo); applyGains(demo); });
+      return state;
+    });
+
+    demo.play = play; demo.fill = fill;
+    play.addEventListener('click', function () { if (playing === demo) stop(); else start(demo); });
+    list.appendChild(card);
+  });
+
+  function applyGains(demo) {
+    var anySolo = demo.rows.some(function (r) { return r.solo; });
+    demo.rows.forEach(function (r) {
+      var on = !r.mute && (!anySolo || r.solo);
+      if (r.gain) r.gain.gain.setTargetAtTime(on ? 1 : 0, ctx.currentTime, 0.015);
+    });
+  }
+
+  function stop() {
+    if (!playing) return;
+    var demo = playing; playing = null;
+    (demo.sources || []).forEach(function (s) { try { s.onended = null; s.stop(); } catch (e) {} });
+    demo.sources = null;
+    demo.play.textContent = 'Tocar'; demo.play.classList.remove('on');
+    demo.fill.style.width = '0';
+    demo.rows.forEach(function (r) { r.level.style.width = '0'; });
+  }
+
+  function load(demo) {
+    if (demo.buffers) return Promise.resolve(demo.buffers);
+    return Promise.all(demo.tracks.map(function (t, i) {
+      return fetch('demos/omnitone-demo-' + demo.id + '-' + (i + 1) + '.mp3')
+        .then(function (r) { if (!r.ok) throw new Error('arquivo'); return r.arrayBuffer(); })
+        .then(function (data) { return new Promise(function (ok, fail) { ctx.decodeAudioData(data, ok, fail); }); });
+    })).then(function (buffers) { demo.buffers = buffers; return buffers; });
+  }
+
+  function start(demo) {
+    if (!AudioCtx) { window.open('demos/omnitone-demo-' + demo.id + '.mp3', '_blank'); return; }
+    stop();
+    if (!ctx) ctx = new AudioCtx();
+    ctx.resume();
+    playing = demo;
+    demo.play.textContent = 'Carregando...'; demo.play.classList.add('on');
+
+    load(demo).then(function (buffers) {
+      if (playing !== demo) return;
+      var when = ctx.currentTime + 0.08;
+      demo.startedAt = when; demo.duration = buffers[0].duration;
+      demo.sources = buffers.map(function (buffer, i) {
+        var row = demo.rows[i];
+        var source = ctx.createBufferSource(); source.buffer = buffer;
+        row.gain = ctx.createGain(); row.analyser = ctx.createAnalyser(); row.analyser.fftSize = 256;
+        source.connect(row.gain); row.gain.connect(row.analyser); row.analyser.connect(ctx.destination);
+        source.start(when);
+        return source;
+      });
+      demo.sources[0].onended = function () { if (playing === demo) stop(); };
+      applyGains(demo);
+      demo.play.textContent = 'Parar';
+      requestAnimationFrame(tick);
+    }).catch(function () {
+      // Sem as faixas (ou navegador antigo): toca a mixagem pronta.
+      if (playing === demo) stop();
+      window.open('demos/omnitone-demo-' + demo.id + '.mp3', '_blank');
+    });
+  }
+
+  var samples = new Uint8Array(128);
+  function tick() {
+    var demo = playing;
+    if (!demo || !demo.sources) return;
+    var position = Math.max(0, ctx.currentTime - demo.startedAt);
+    demo.fill.style.width = Math.min(100, 100 * position / demo.duration) + '%';
+    demo.rows.forEach(function (r) {
+      if (!r.analyser) return;
+      r.analyser.getByteTimeDomainData(samples);
+      var peak = 0;
+      for (var i = 0; i < samples.length; i++) peak = Math.max(peak, Math.abs(samples[i] - 128));
+      r.level.style.width = Math.min(100, Math.round(peak / 128 * 220)) + '%';
+    });
+    requestAnimationFrame(tick);
+  }
+})();
+</script>
 
 <h2 id="instalar">Instalar</h2>
 <ol>
