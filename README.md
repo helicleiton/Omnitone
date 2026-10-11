@@ -11,10 +11,6 @@ O Omnitone é gratuito e sempre será.
 
 ## Problemas e sugestões
 
-Abra um relato em [Issues](https://github.com/helicleiton/Omnitone/issues) informando a versão do Windows, a interface de áudio e o que aconteceu. O roteiro de testes está em [TESTES.md](TESTES.md).
-
-## Licença
-
-A versão 0.2.0 é distribuída sob a GNU GPL versão 3 ([LICENSE](LICENSE)); o código-fonte dela acompanha a release como `Omnitone-0.2.0-source.zip`.
+Abra um relato em [Issues](https://github.com/helicleiton/Omnitone/issues) informando a versão do Windows, a interface de áudio e o que aconteceu. 
 
 Desenvolvido por @helicleiton.
