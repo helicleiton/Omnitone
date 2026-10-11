@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Omnitone - sampler e sintetizador gratuito</title>
+<meta name="description" content="Omnitone: instrumento virtual gratuito e de codigo aberto para Windows, com camadas, splits, sintese FM, orgao de tonewheels, analogico virtual, SFZ e SoundFont.">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root { --bg:#111214; --panel:#16171a; --edge:#2a2c31; --text:#ecebe8; --dim:#8a8d93; --accent:#ff6a3d; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif; }
+  a { color:var(--accent); }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 20px; }
+  header { padding:28px 0 8px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .mark { display:flex; align-items:center; gap:12px; letter-spacing:.24em; font-size:17px; }
+  .mark i { width:22px; height:22px; border:2px solid var(--accent); border-radius:50%; position:relative; display:inline-block; }
+  .mark i::after { content:""; position:absolute; inset:6px; background:var(--accent); border-radius:50%; }
+  .mark b { font-weight:700; } .mark span { color:var(--dim); }
+  nav a { color:var(--dim); text-decoration:none; margin-left:18px; font-size:14px; }
+  nav a:hover { color:var(--text); }
+  .hero { padding:44px 0 28px; }
+  h1 { font-size:clamp(30px,5vw,48px); line-height:1.15; margin:0 0 14px; }
+  h1 em { color:var(--accent); font-style:normal; }
+  .lead { color:var(--dim); font-size:18px; max-width:720px; margin:0 0 26px; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .btn { display:inline-block; padding:13px 24px; border-radius:6px; text-decoration:none; font-weight:600; border:1px solid var(--edge); color:var(--text); }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#16171a; }
+  .note { color:var(--dim); font-size:13px; margin-top:12px; }
+  .shot { margin:34px 0 8px; border:1px solid var(--edge); border-radius:8px; overflow:hidden; background:var(--panel); }
+  .shot img { display:block; width:100%; height:auto; }
+  h2 { font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin:56px 0 18px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+  .card { background:var(--panel); border:1px solid var(--edge); border-radius:6px; padding:18px 20px; }
+  .card h3 { margin:0 0 6px; font-size:17px; } .card p { margin:0; color:var(--dim); font-size:15px; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--edge); border-radius:6px; overflow:hidden; font-size:15px; }
+  th, td { text-align:left; padding:11px 16px; border-bottom:1px solid var(--edge); vertical-align:top; }
+  th { color:var(--dim); font-weight:600; font-size:13px; letter-spacing:.06em; text-transform:uppercase; }
+  tr:last-child td { border-bottom:0; } td:first-child { white-space:nowrap; font-weight:600; }
+  ol, ul { padding-left:22px; } li { margin:4px 0; }
+  .warn { border-left:3px solid var(--accent); background:var(--panel); padding:16px 20px; border-radius:0 6px 6px 0; }
+  .warn h3 { margin:0 0 6px; font-size:16px; } .warn p { margin:6px 0 0; color:var(--dim); font-size:15px; }
+  code { background:#0b0c0d; border:1px solid var(--edge); border-radius:4px; padding:1px 6px; font-size:14px; }
+  footer { margin:64px 0 40px; padding-top:22px; border-top:1px solid var(--edge); color:var(--dim); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark"><i></i><div><b>OMNI</b><span>TONE</span></div></div>
+  <nav>
+    <a href="#recursos">Recursos</a><a href="#timbres">Timbres</a><a href="#instalar">Instalar</a>
+    <a href="https://github.com/helicleiton/Omnitone/releases/download/v0.2.0/Omnitone-0.2.0-source.zip">Codigo-fonte</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Um instrumento, <em>muitos teclados</em>.</h1>
+  <p class="lead">O Omnitone e um sampler e sintetizador gratuito e de codigo aberto para Windows. Empilhe ate 8 timbres, divida o teclado, toque sintese FM, orgao de tonewheels e sintetizadores analogicos virtuais, e carregue suas bibliotecas SFZ e SoundFont.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/helicleiton/Omnitone/releases/latest/download/Omnitone-Setup.exe">Baixar instalador para Windows</a>
+    <a class="btn" href="#instalar">Como instalar</a>
+  </div>
+  <p class="note">Versao 0.2.0 &middot; 8 MB &middot; Windows 10 e 11 de 64 bits &middot; aplicativo e plugin VST3 &middot; gratuito, licenca GPLv3</p>
+  <div class="shot"><img src="screenshot.png" alt="Tela principal do Omnitone: visor, mesa de 8 camadas com faders e VUs, controles de timbre e teclado"></div>
+</section>
+
+<h2 id="recursos">Recursos</h2>
+<div class="grid">
+  <div class="card"><h3>8 camadas e splits</h3><p>Cada camada tem volume, mute, solo, VU, faixa de teclas e oitava. Monte um baixo na mao esquerda e um piano na direita, ou empilhe pads.</p></div>
+  <div class="card"><h3>Cinco motores de som</h3><p>Amostras em SFZ, SoundFont (.sf2), sintese FM de 6 operadores, orgao de tonewheels por modelo e sintetizador analogico virtual.</p></div>
+  <div class="card"><h3>Controles por timbre</h3><p>Envelope, filtro multimodo com envelope proprio, equalizador de 3 bandas, drive e modulacao (chorus, phaser, tremolo, caixa rotativa) em cada camada.</p></div>
+  <div class="card"><h3>Delay e reverb</h3><p>Delay sincronizado ao andamento ou livre, reverb algoritmico ou por convolucao com a sua resposta ao impulso, e limitador na saida.</p></div>
+  <div class="card"><h3>Tones e Performances</h3><p>Salve os ajustes de cada timbre e as combinacoes inteiras de camadas. O app ja traz 12 Performances prontas. Marque favoritos e encontre tudo pela busca (Ctrl+F).</p></div>
+  <div class="card"><h3>Feito para tocar</h3><p>Controladores MIDI funcionam ao conectar. Enderece knobs e faders do seu teclado com um clique. Rodas de pitch bend e modulacao.</p></div>
+  <div class="card"><h3>Baixa latencia</h3><p>Suporte a drivers ASIO e aos modos exclusivo e de baixa latencia do Windows Audio.</p></div>
+  <div class="card"><h3>Navegacao por origem</h3><p>Os timbres sao organizados por categoria, subcategoria e pelo teclado ou instrumento em que se inspiram, com foto ou ilustracao.</p></div>
+</div>
+
+<h2 id="timbres">Timbres</h2>
+<table>
+  <tr><th>O que</th><th>Como chega</th><th>Detalhes</th></tr>
+  <tr><td>Timbres de fabrica</td><td>Ja vem no app</td><td>Mais de 140 timbres gerados por sintese, sem amostras: sintetizadores analogicos virtuais, orgao de tonewheels com 10 registros, vozes FM, kits de bateria eletronica, leads, baixos, pads e efeitos. Mais 12 Performances prontas, com splits e camadas.</td></tr>
+  <tr><td>Bibliotecas SFZ</td><td>Voce instala</td><td>Qualquer instrumento em SFZ: pianos, orquestra, baterias, guitarras. Ha varias bibliotecas livres, como VCSL, VSCO 2 e Salamander Grand Piano.</td></tr>
+  <tr><td>SoundFonts</td><td>Voce instala</td><td>Arquivos .sf2: cada preset vira um timbre, classificado pela familia do General MIDI.</td></tr>
+  <tr><td>Bancos FM</td><td>Voce instala</td><td>Bancos .syx de 32 vozes no formato DX7 e colecoes de vozes de 4 operadores no formato Reface DX.</td></tr>
+</table>
+<p class="note">O Omnitone nao distribui bibliotecas de amostras, SoundFonts, bancos de vozes nem fotos de terceiros. Cada um tem a sua licenca.</p>
+
+<h2 id="instalar">Instalar</h2>
+<ol>
+  <li>Clique em <a href="https://github.com/helicleiton/Omnitone/releases/latest/download/Omnitone-Setup.exe"><b>Baixar instalador</b></a>. O arquivo <code>Omnitone-Setup.exe</code> vai para a sua pasta de Downloads.</li>
+  <li>Abra o arquivo e siga as telas: <b>Avancar</b>, <b>Avancar</b>, <b>Instalar</b>. Se voce usa um programa de gravacao (DAW), deixe marcada a opcao do plugin VST3.</li>
+  <li>Abra o <b>Omnitone</b> pelo menu Iniciar. Se nao sair som, aperte <b>Ctrl+P</b> e escolha a sua saida de audio.</li>
+</ol>
+<p class="note">Prefere nao instalar? Baixe a <a href="https://github.com/helicleiton/Omnitone/releases/latest/download/Omnitone-win64.zip">versao portatil (zip)</a>, descompacte e abra <code>Omnitone.exe</code>. Para remover a versao instalada, use "Adicionar ou remover programas" do Windows; seus timbres e ajustes em <code>Documentos\Omnitone</code> sao mantidos.</p>
+
+<div class="warn">
+  <h3>Aviso do Windows ao abrir</h3>
+  <p>O Omnitone e um projeto gratuito e nao tem assinatura digital paga. Por isso o Windows pode mostrar a tela azul "O Windows protegeu o computador" (SmartScreen) na primeira vez.</p>
+  <p>Isso pode aparecer ao abrir o instalador. Para continuar: clique em <b>Mais informacoes</b> e depois em <b>Executar assim mesmo</b>. Se preferir conferir antes, o codigo-fonte completo desta versao esta disponivel para download e voce pode compilar o programa por conta propria.</p>
+</div>
+
+<h2>Acrescentar timbres</h2>
+<ul>
+  <li>Na tela <b>TONES</b>, o botao <b>Importar...</b> copia arquivos <code>.sf2</code> e <code>.syx</code> para a sua pasta de bibliotecas.</li>
+  <li>Ou coloque uma pasta com os arquivos em <code>Documentos\Omnitone\Libraries</code> e reabra o app.</li>
+  <li>Fotos dos equipamentos vao em <code>Documentos\Omnitone\User\Images</code>, com o nome do timbre ou da origem.</li>
+</ul>
+
+<h2>Estado do projeto</h2>
+<p>Esta e a primeira versao publica. Foi desenvolvida e verificada em um unico computador, entao pode haver falhas em outras maquinas e configuracoes de audio. Se algo nao funcionar, <a href="https://github.com/helicleiton/Omnitone/issues">abra um relato no GitHub</a> dizendo o que aconteceu, a sua versao do Windows e a sua interface de audio. O roteiro de testes esta no arquivo <code>TESTES.md</code> do repositorio.</p>
+
+<h2>Licenca e creditos</h2>
+<p>O Omnitone e software livre sob a <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL versao 3</a>. Usa JUCE, sfizz, o nucleo FM do music-synthesizer-for-android, TinySoundFont e o ASIO SDK da Steinberg.</p>
+<p class="note">Os nomes de instrumentos e fabricantes citados no app e nesta pagina pertencem aos seus donos e servem apenas para indicar o tipo de som em que um timbre se inspira. O Omnitone nao e afiliado nem endossado por nenhuma dessas empresas. Este projeto nao tem relacao com a biblioteca de audio espacial "Omnitone" do Google. ASIO e VST sao marcas da Steinberg Media Technologies GmbH.</p>
+
+<footer>Desenvolvido por @helicleiton &middot; <a href="https://github.com/helicleiton/Omnitone">github.com/helicleiton/Omnitone</a></footer>
+
+</div>
+</body>
+</html>
