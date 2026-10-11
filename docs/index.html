@@ -55,18 +55,39 @@
   .contact textarea:focus { outline:none; border-color:var(--accent); }
   .contact.report input { flex:0 0 auto; } .contact.report button { align-self:flex-start; }
   .contact .done { color:var(--accent); font-weight:600; margin:0; }
-  .demos { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; }
-  .demo { background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:16px 18px 14px; }
+  .demos { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:12px; }
+  .demo { background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:16px 16px 14px; }
   .demo-head { display:flex; align-items:center; gap:14px; }
   .demo-head h3 { margin:0; font-size:18px; } .demo-style { color:var(--dim); font-size:13px; }
   .demo-play { min-width:104px; padding:10px 14px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#16171a; font:inherit; font-weight:600; cursor:pointer; }
   .demo-play.on { background:transparent; color:var(--accent); }
-  .demo-bar { height:3px; background:var(--edge); border-radius:2px; margin:14px 0 8px; overflow:hidden; } .demo-bar i { display:block; height:100%; width:0; background:var(--accent); }
-  .track { display:flex; align-items:center; gap:8px; padding:7px 0; border-top:1px solid var(--edge); }
-  .track-names { flex:1 1 auto; min-width:0; } .track-names b { display:block; font-size:14px; } .track-names span { display:block; color:var(--dim); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .track-meter { flex:0 0 64px; height:6px; background:var(--bg); border:1px solid var(--edge); border-radius:3px; overflow:hidden; } .track-meter i { display:block; height:100%; width:0; background:var(--accent); }
-  .track-btn { flex:0 0 28px; height:26px; border-radius:5px; border:1px solid var(--edge); background:var(--bg); color:var(--dim); font:inherit; font-size:12px; font-weight:700; cursor:pointer; }
-  .track-btn.on { border-color:var(--accent); background:var(--accent); color:#16171a; }
+  .demo-bar { height:3px; background:var(--edge); border-radius:2px; margin:14px 0 12px; overflow:hidden; } .demo-bar i { display:block; height:100%; width:0; background:var(--accent); }
+  /* Mesa de som: um canal por timbre, mais o master. */
+  .desk { display:flex; gap:6px; align-items:stretch; background:#0c0d0f; border:1px solid var(--edge); border-radius:6px; padding:8px; overflow-x:auto; }
+  .strip { flex:1 1 0; min-width:52px; display:flex; flex-direction:column; align-items:center; gap:8px; background:linear-gradient(#1c1e22,#141518); border:1px solid var(--edge); border-radius:5px; padding:8px 4px 7px; }
+  .strip.master { background:linear-gradient(#24262b,#17181b); border-color:#3a3d44; margin-left:4px; }
+  .strip-buttons { display:flex; gap:4px; min-height:22px; }
+  .strip-btn { width:22px; height:22px; border-radius:50%; border:1px solid #3a3d44; background:#0f1012; color:var(--dim); font:inherit; font-size:11px; font-weight:700; line-height:1; cursor:pointer; padding:0; }
+  .strip-btn.on { border-color:var(--accent); background:var(--accent); color:#16171a; }
+  .strip-body { display:flex; gap:7px; align-items:stretch; height:150px; }
+  .vu { width:7px; border-radius:2px; background:#07080a; border:1px solid var(--edge); position:relative; overflow:hidden; }
+  .vu i { position:absolute; left:0; right:0; bottom:0; height:0; background:linear-gradient(to top,#3ddc84 0%,#3ddc84 62%,#ffd23d 62%,#ffd23d 84%,#ff5a3d 84%); background-size:100% 148px; background-position:bottom; }
+  .vu::after { content:""; position:absolute; inset:0; background:repeating-linear-gradient(to top,transparent 0 4px,#07080a 4px 5px); pointer-events:none; }
+  .fader { position:relative; width:26px; display:flex; justify-content:center; }
+  .fader::before { content:""; position:absolute; top:6px; bottom:6px; left:50%; width:4px; margin-left:-2px; border-radius:2px; background:#07080a; border:1px solid var(--edge); }
+  .fader::after { content:""; position:absolute; left:2px; right:2px; top:6px; bottom:6px; background:repeating-linear-gradient(to bottom,#3a3d44 0 1px,transparent 1px 14px); opacity:.55; pointer-events:none; clip-path:polygon(0 0,34% 0,34% 100%,0 100%,0 0,66% 0,100% 0,100% 100%,66% 100%,66% 0); }
+  .fader input { -webkit-appearance:none; appearance:none; writing-mode:vertical-lr; direction:rtl; width:26px; height:150px; margin:0; background:transparent; cursor:grab; position:relative; z-index:1; }
+  .fader input::-webkit-slider-runnable-track { background:transparent; }
+  .fader input::-moz-range-track { background:transparent; }
+  .fader input::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:24px; height:14px; border-radius:2px; border:1px solid #05060a; background:linear-gradient(#d9d7d2 0 42%,#16171a 42% 58%,#b5b3ae 58%); box-shadow:0 2px 4px rgba(0,0,0,.6); }
+  .fader input::-moz-range-thumb { width:24px; height:14px; border-radius:2px; border:1px solid #05060a; background:linear-gradient(#d9d7d2 0 42%,#16171a 42% 58%,#b5b3ae 58%); box-shadow:0 2px 4px rgba(0,0,0,.6); }
+  .strip.master .fader input::-webkit-slider-thumb { background:linear-gradient(#ff8a66 0 42%,#16171a 42% 58%,#ff6a3d 58%); }
+  .strip.master .fader input::-moz-range-thumb { background:linear-gradient(#ff8a66 0 42%,#16171a 42% 58%,#ff6a3d 58%); }
+  .fader input:focus-visible { outline:1px solid var(--accent); outline-offset:1px; }
+  .strip-label { width:100%; text-align:center; background:#e9e7e2; color:#16171a; border-radius:2px; padding:3px 2px; min-height:34px; display:flex; flex-direction:column; justify-content:center; }
+  .strip-label b { display:block; font-size:10.5px; line-height:1.15; text-transform:uppercase; letter-spacing:.03em; }
+  .strip-label span { display:block; font-size:8.5px; line-height:1.15; color:#4a4c52; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+  .strip.master .strip-label { background:var(--accent); }
   footer { margin:64px 0 40px; padding-top:22px; border-top:1px solid var(--edge); color:var(--dim); font-size:13px; }
 </style>
 </head>
@@ -130,7 +151,7 @@
 <p class="note">O Omnitone nao distribui bibliotecas de amostras, SoundFonts, bancos de vozes nem fotos de terceiros. Cada um tem a sua licenca.</p>
 
 <h2 id="demos">Demos</h2>
-<p>Quatro musicas curtas feitas so com timbres que ja vem no Omnitone. Cada faixa e um timbre: toque a musica e use <b>M</b> (mudo) e <b>S</b> (solo) para ouvir cada um separado.</p>
+<p>Quatro musicas curtas feitas so com timbres que ja vem no Omnitone. Cada canal da mesa e um timbre: toque a musica, mexa nos <b>faders</b> e use <b>M</b> (mudo) e <b>S</b> (solo) para ouvir cada um separado.</p>
 <div class="demos" id="lista-demos"></div>
 <p class="note">As demos sao composicoes originais, tocadas e mixadas pelo proprio Omnitone, sem amostras nem efeitos de fora.</p>
 
@@ -141,11 +162,11 @@
       ['Pad', 'Wide Poly - Pad'], ['Baixo', 'Chorus Poly Vintage - Bass'], ['Arpejo', 'Chorus Poly Vintage - Pluck'],
       ['Solo', 'Retro Night Lead'], ['Bateria', 'Drum Kit - Punch'] ] },
     { id: 'domingo', title: 'Domingo', style: 'Gospel', tracks: [
-      ['Orgao', 'Tonewheel Gospel'], ['Baixo', 'Pedal Synth - Pedals'], ['Piano eletrico', 'Reed E.Piano'],
+      ['Orgao', 'Tonewheel Gospel'], ['Baixo', 'Pedal Synth - Pedals'], ['Piano el.', 'Reed E.Piano'],
       ['Bateria', 'Drum Kit - Vintage Box'] ] },
     { id: 'horizonte', title: 'Horizonte', style: 'Trilha', tracks: [
-      ['Cordas', 'String Ensemble - Strings'], ['Cordas de fita', 'Tape Strings'], ['Pad de vidro', 'Workstation - Glass Pad'],
-      ['Teclas', 'Workstation - Crystal Keys'], ['Sub-grave', 'Ladder Mono - Sub Bass'] ] },
+      ['Cordas', 'String Ensemble - Strings'], ['Fita', 'Tape Strings'], ['Pad', 'Workstation - Glass Pad'],
+      ['Teclas', 'Workstation - Crystal Keys'], ['Sub', 'Ladder Mono - Sub Bass'] ] },
     { id: 'garagem', title: 'Garagem', style: 'Funk', tracks: [
       ['Clavinet', 'Funk Clav'], ['Baixo', 'Duo Synth - Bass'], ['Metais', 'Workstation - Big Brass'],
       ['Bateria', 'Drum Kit - Punch'] ] }
@@ -154,8 +175,44 @@
   var list = document.getElementById('lista-demos');
   var AudioCtx = window.AudioContext || window.webkitAudioContext;
   var ctx = null, playing = null;   // playing: a demo que esta tocando
+  var FADER_ZERO = 75;              // posicao do fader que equivale a 0 dB
 
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+  function faderGain(value) { var x = value / FADER_ZERO; return x * x; }
+
+  // Um canal da mesa: M/S em cima, VU e fader lado a lado, etiqueta embaixo.
+  function strip(demo, label, tone, isMaster) {
+    var box = el('div', 'strip' + (isMaster ? ' master' : ''));
+    var buttons = el('div', 'strip-buttons');
+    var state = { mute: false, solo: false, fader: FADER_ZERO, gain: null, analyser: null, peak: 0 };
+
+    if (!isMaster) {
+      var mute = el('button', 'strip-btn', 'M'); mute.type = 'button'; mute.title = 'Mudo'; mute.setAttribute('aria-label', 'Mudo: ' + label);
+      var solo = el('button', 'strip-btn', 'S'); solo.type = 'button'; solo.title = 'Solo'; solo.setAttribute('aria-label', 'Solo: ' + label);
+      mute.addEventListener('click', function () { state.mute = !state.mute; mute.classList.toggle('on', state.mute); applyGains(demo); });
+      solo.addEventListener('click', function () { state.solo = !state.solo; solo.classList.toggle('on', state.solo); applyGains(demo); });
+      buttons.appendChild(mute); buttons.appendChild(solo);
+    }
+
+    var body = el('div', 'strip-body');
+    var vu = el('div', 'vu'); var level = el('i'); vu.appendChild(level);
+    var slot = el('div', 'fader');
+    var fader = document.createElement('input');
+    fader.type = 'range'; fader.min = 0; fader.max = 100; fader.value = FADER_ZERO;
+    fader.setAttribute('orient', 'vertical'); fader.setAttribute('aria-label', 'Volume: ' + label);
+    fader.addEventListener('input', function () { state.fader = +fader.value; applyGains(demo); });
+    fader.addEventListener('dblclick', function () { fader.value = FADER_ZERO; state.fader = FADER_ZERO; applyGains(demo); });
+    slot.appendChild(fader);
+    body.appendChild(vu); body.appendChild(slot);
+
+    var tag = el('div', 'strip-label');
+    tag.appendChild(el('b', '', label));
+    if (tone) { var name = el('span', '', tone); name.title = tone; tag.appendChild(name); }
+
+    box.appendChild(buttons); box.appendChild(body); box.appendChild(tag);
+    state.box = box; state.level = level;
+    return state;
+  }
 
   demos.forEach(function (demo) {
     var card = el('div', 'demo');
@@ -170,21 +227,11 @@
 
     var bar = el('div', 'demo-bar'); var fill = el('i'); bar.appendChild(fill); card.appendChild(bar);
 
-    demo.rows = demo.tracks.map(function (track) {
-      var row = el('div', 'track');
-      var names = el('div', 'track-names');
-      names.appendChild(el('b', '', track[0]));
-      names.appendChild(el('span', '', track[1]));
-      var meter = el('div', 'track-meter'); var level = el('i'); meter.appendChild(level);
-      var mute = el('button', 'track-btn', 'M'); mute.type = 'button'; mute.title = 'Mudo'; mute.setAttribute('aria-label', 'Mudo: ' + track[0]);
-      var solo = el('button', 'track-btn', 'S'); solo.type = 'button'; solo.title = 'Solo'; solo.setAttribute('aria-label', 'Solo: ' + track[0]);
-      row.appendChild(names); row.appendChild(meter); row.appendChild(mute); row.appendChild(solo);
-      card.appendChild(row);
-      var state = { mute: false, solo: false, level: level, muteBtn: mute, soloBtn: solo, gain: null, analyser: null };
-      mute.addEventListener('click', function () { state.mute = !state.mute; mute.classList.toggle('on', state.mute); applyGains(demo); });
-      solo.addEventListener('click', function () { state.solo = !state.solo; solo.classList.toggle('on', state.solo); applyGains(demo); });
-      return state;
-    });
+    var desk = el('div', 'desk');
+    demo.rows = demo.tracks.map(function (track) { var s = strip(demo, track[0], track[1], false); desk.appendChild(s.box); return s; });
+    demo.master = strip(demo, 'Master', '', true);
+    desk.appendChild(demo.master.box);
+    card.appendChild(desk);
 
     demo.play = play; demo.fill = fill;
     play.addEventListener('click', function () { if (playing === demo) stop(); else start(demo); });
@@ -192,11 +239,13 @@
   });
 
   function applyGains(demo) {
+    if (!ctx) return;
     var anySolo = demo.rows.some(function (r) { return r.solo; });
     demo.rows.forEach(function (r) {
       var on = !r.mute && (!anySolo || r.solo);
-      if (r.gain) r.gain.gain.setTargetAtTime(on ? 1 : 0, ctx.currentTime, 0.015);
+      if (r.gain) r.gain.gain.setTargetAtTime(on ? faderGain(r.fader) : 0, ctx.currentTime, 0.015);
     });
+    if (demo.master.gain) demo.master.gain.gain.setTargetAtTime(faderGain(demo.master.fader), ctx.currentTime, 0.015);
   }
 
   function stop() {
@@ -206,7 +255,7 @@
     demo.sources = null;
     demo.play.textContent = 'Tocar'; demo.play.classList.remove('on');
     demo.fill.style.width = '0';
-    demo.rows.forEach(function (r) { r.level.style.width = '0'; });
+    demo.rows.concat([demo.master]).forEach(function (r) { r.peak = 0; r.level.style.height = '0'; });
   }
 
   function load(demo) {
@@ -230,11 +279,16 @@
       if (playing !== demo) return;
       var when = ctx.currentTime + 0.08;
       demo.startedAt = when; demo.duration = buffers[0].duration;
+
+      var master = demo.master;
+      master.gain = ctx.createGain(); master.analyser = ctx.createAnalyser(); master.analyser.fftSize = 256;
+      master.gain.connect(master.analyser); master.analyser.connect(ctx.destination);
+
       demo.sources = buffers.map(function (buffer, i) {
         var row = demo.rows[i];
         var source = ctx.createBufferSource(); source.buffer = buffer;
         row.gain = ctx.createGain(); row.analyser = ctx.createAnalyser(); row.analyser.fftSize = 256;
-        source.connect(row.gain); row.gain.connect(row.analyser); row.analyser.connect(ctx.destination);
+        source.connect(row.gain); row.gain.connect(row.analyser); row.analyser.connect(master.gain);
         source.start(when);
         return source;
       });
@@ -255,12 +309,14 @@
     if (!demo || !demo.sources) return;
     var position = Math.max(0, ctx.currentTime - demo.startedAt);
     demo.fill.style.width = Math.min(100, 100 * position / demo.duration) + '%';
-    demo.rows.forEach(function (r) {
+    demo.rows.concat([demo.master]).forEach(function (r) {
       if (!r.analyser) return;
       r.analyser.getByteTimeDomainData(samples);
       var peak = 0;
       for (var i = 0; i < samples.length; i++) peak = Math.max(peak, Math.abs(samples[i] - 128));
-      r.level.style.width = Math.min(100, Math.round(peak / 128 * 220)) + '%';
+      // Sobe na hora e desce devagar, como um VU de pico.
+      r.peak = Math.max(peak / 128, r.peak * 0.9);
+      r.level.style.height = Math.min(100, Math.round(Math.sqrt(r.peak) * 115)) + '%';
     });
     requestAnimationFrame(tick);
   }
