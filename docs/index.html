@@ -55,6 +55,11 @@
   .contact textarea:focus { outline:none; border-color:var(--accent); }
   .contact.report input { flex:0 0 auto; } .contact.report button { align-self:flex-start; }
   .contact .done { color:var(--accent); font-weight:600; margin:0; }
+  .pix-support { display:flex; align-items:center; gap:18px; border-top:1px solid var(--edge); margin-top:20px; padding-top:18px; }
+  .pix-support img { display:block; flex:0 0 144px; width:144px; height:144px; padding:7px; background:#fff; border-radius:8px; }
+  .pix-support h4 { margin:0 0 6px; font-size:17px; }
+  .pix-support p { margin:0 0 10px; color:var(--dim); font-size:15px; }
+  .pix-support a { font-weight:600; }
   .demos { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr)); gap:12px; }
   .demo { background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:16px 16px 14px; }
   .demo-head { display:flex; align-items:center; gap:14px; }
@@ -89,6 +94,7 @@
   .strip-label span { display:block; font-size:8.5px; line-height:1.15; color:#4a4c52; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
   .strip.master .strip-label { background:var(--accent); }
   footer { margin:64px 0 40px; padding-top:22px; border-top:1px solid var(--edge); color:var(--dim); font-size:13px; }
+  @media (max-width:560px) { .pix-support { align-items:flex-start; gap:14px; } .pix-support img { flex-basis:112px; width:112px; height:112px; padding:5px; } }
 </style>
 </head>
 <body>
@@ -124,6 +130,14 @@
       <a class="btn whats" href="https://wa.me/5585994252561?text=Ol%C3%A1!%20Quero%20receber%20novidades%20do%20Omnitone." target="_blank" rel="noopener">Chamar no WhatsApp</a>
     </div>
     <p class="note" style="margin:12px 0 0">Seu contato e usado so para avisos sobre o Omnitone.</p>
+    <div class="pix-support">
+      <img src="pix-qrcode.png" width="144" height="144" alt="QR Code Pix para doar qualquer quantia e apoiar o projeto Omnitone" loading="lazy">
+      <div>
+        <h4>Apoie meu trabalho via Pix</h4>
+        <p>Se o Omnitone ajuda sua musica, doe qualquer quantia. Obrigado por apoiar o projeto.</p>
+        <a href="https://nubank.com.br/cobrar/esrl62/6ac8cdb9-ebc8-48c3-ba1f-0ae3fa4d0415" target="_blank" rel="noopener">Abrir cobranca Pix</a>
+      </div>
+    </div>
     <iframe name="envio" title="envio" hidden></iframe>
   </div>
 </section>
