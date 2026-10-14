@@ -36,14 +36,16 @@
   .keyboard-wrap { margin-top:34px; }
   .keyboard-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; color:var(--dim); font-size:12px; }
   .keyboard-head strong { color:var(--text); font-weight:600; }
-  .keyboard { position:relative; display:grid; grid-template-columns:repeat(14,minmax(0,1fr)); height:clamp(170px,34vh,300px); overflow:hidden; border:1px solid #08090b; border-radius:3px; background:#07080a; touch-action:none; user-select:none; }
-  .key { position:relative; min-width:0; height:100%; padding:0 0 11px; display:flex; align-items:flex-end; justify-content:center; border:0; border-right:1px solid #b7b5b0; border-radius:0; background:linear-gradient(90deg,#d9d7d2,#f0eee9 50%,#d0cec9); color:#55575c; font-size:11px; cursor:pointer; touch-action:none; }
-  .key:last-of-type { border-right:0; }
-  .key.active { background:linear-gradient(90deg,#e95831,#ff8158 50%,#e95831); color:#171719; }
-  .key.black { position:absolute; z-index:2; top:0; height:61%; width:4.43%; transform:translateX(-50%); padding:0 0 8px; border:1px solid #050506; border-radius:0 0 3px 3px; background:linear-gradient(90deg,#111214,#27282b 55%,#111214); color:#9b9da2; box-shadow:0 3px 5px #0008; }
-  .key.black.active { background:linear-gradient(90deg,#b74729,#ff6a3d 55%,#b74729); color:#151517; }
+  .keyboard { position:relative; display:grid; grid-template-columns:repeat(14,minmax(0,1fr)); height:clamp(170px,34vh,300px); overflow:hidden; padding:8px 7px 13px; border:1px solid #50483f; border-radius:7px; background:linear-gradient(180deg,#353538 0%,#1d1e21 8%,#090a0b 100%); box-shadow:inset 0 1px 0 #77736b55,inset 0 -5px 0 #050607,0 5px 12px #0008; touch-action:none; user-select:none; }
+  .key { position:relative; min-width:0; height:100%; margin:0 1px; padding:0 0 11px; display:flex; align-items:flex-end; justify-content:center; border:1px solid #a49e91; border-bottom:7px solid #aaa395; border-radius:0 0 3px 3px; background:linear-gradient(90deg,#c9c3b7 0%,#fbf8ef 12%,#f1eee5 76%,#c4beaf 100%); color:#454448; font-size:11px; cursor:pointer; box-shadow:inset 0 1px 0 #fff,inset 1px 0 2px #fff8,0 2px 2px #0005; touch-action:none; }
+  .key::before { content:""; position:absolute; top:3px; left:3px; right:3px; height:2px; background:#fff9; }
+  .key.active { border-color:#bd5535; border-bottom-color:#a63e22; background:linear-gradient(90deg,#d45632 0%,#ffb18f 12%,#ff8158 76%,#c54828 100%); color:#171719; }
+  .key.black { position:absolute; z-index:2; top:8px; height:56%; width:4.43%; transform:translateX(-50%); margin:0; padding:0 0 8px; border:1px solid #050506; border-top-color:#646166; border-bottom:4px solid #050506; border-radius:0 0 4px 4px; background:linear-gradient(90deg,#090a0c 0%,#38383b 20%,#1b1c1f 66%,#070809 100%); color:#aaa7a0; box-shadow:inset 0 1px 0 #aaa6a055,0 4px 6px #000b; }
+  .key.black::before { top:2px; left:3px; right:3px; height:2px; background:#aaa6a066; }
+  .key.black.active { border-bottom-color:#742b18; background:linear-gradient(90deg,#8f341c 0%,#ff9a72 22%,#b94422 72%,#762612 100%); color:#151517; }
   .key:focus-visible { z-index:3; outline-offset:-3px; }
   .hint { display:flex; justify-content:space-between; gap:14px; margin-top:12px; color:var(--dim); font-size:12px; }
+  .orientation-prompt { display:none; }
   footer { display:flex; justify-content:space-between; gap:16px; padding:20px 0 22px; border-top:1px solid var(--edge); color:var(--dim); font-size:12px; }
   footer a { color:var(--text); text-decoration-color:var(--accent); text-underline-offset:3px; }
   @media (max-width:700px) {
@@ -56,6 +58,33 @@
     .keyboard { height:clamp(180px,38vh,250px); }
     .hint { flex-direction:column; gap:4px; }
     footer { flex-direction:column; }
+  }
+  @media (max-width:700px) and (orientation:portrait) {
+    .orientation-prompt { position:fixed; inset:0; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:30px; background:var(--bg); text-align:center; }
+    .orientation-prompt .eyebrow { margin:0; }
+    .orientation-prompt strong { color:var(--text); font-size:24px; line-height:1.2; }
+    .orientation-prompt span:last-child { max-width:290px; color:var(--dim); font-size:14px; }
+    .orientation-mark { width:42px; height:28px; border:2px solid var(--accent); border-radius:5px; box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4px var(--accent); transform:rotate(-90deg); }
+  }
+  @media (max-width:900px) and (orientation:landscape) {
+    .shell { min-height:100svh; padding:0 18px; }
+    header { min-height:44px; }
+    main { justify-content:flex-start; padding:6px 0 0; }
+    .intro { align-items:center; flex-direction:row; gap:16px; margin-bottom:8px; }
+    .eyebrow { margin-bottom:3px; }
+    h1 { font-size:26px; }
+    .summary { margin-top:4px; font-size:12px; }
+    .state { font-size:11px; }
+    .controls { grid-template-columns:minmax(180px,1fr) auto minmax(150px,220px); gap:12px; padding:8px 0; }
+    .controls label { gap:4px; }
+    select, .sustain, .volume { min-height:36px; }
+    select { min-height:36px; }
+    .keyboard-wrap { margin-top:12px; }
+    .keyboard-head { margin-bottom:5px; }
+    .keyboard { height:min(28svh,120px); min-height:96px; }
+    .key { padding-bottom:7px; font-size:10px; }
+    .hint { margin-top:6px; font-size:11px; }
+    footer { display:none; }
   }
   @media (prefers-reduced-motion:no-preference) {
     main { animation:arrive .38s ease-out both; }
@@ -106,6 +135,13 @@
     <span>Omnitone Web · edicao compacta</span>
     <a href="https://helicleiton.github.io/Omnitone/">Voltar ao Omnitone</a>
   </footer>
+</div>
+
+<div class="orientation-prompt" role="status">
+  <span class="orientation-mark" aria-hidden="true"></span>
+  <p class="eyebrow">MODO PAISAGEM</p>
+  <strong>Gire o celular para tocar</strong>
+  <span>O teclado do Omnitone Web foi feito para a tela horizontal.</span>
 </div>
 
 <script>
