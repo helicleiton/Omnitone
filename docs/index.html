@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Omnitone - sampler e sintetizador gratuito</title>
-<meta name="description" content="Omnitone: instrumento virtual gratuito e proprietario para Windows, com camadas, splits, sintese FM, orgao de tonewheels, analogico virtual, SFZ e SoundFont.">
+<meta name="description" content="Omnitone: instrumento virtual gratuito e proprietario para Windows, com 8 camadas, arpejador, sintese FM, orgao de tonewheels, analogico virtual e SFZ.">
 <link rel="icon" type="image/png" href="icon.png">
 <style>
   :root { --bg:#111214; --panel:#16171a; --edge:#2a2c31; --text:#ecebe8; --dim:#8a8d93; --accent:#ff6a3d; }
@@ -109,7 +109,7 @@
 
 <section class="hero">
   <h1>Um instrumento, <em>muitos teclados</em>.</h1>
-  <p class="lead">O Omnitone e um sampler e sintetizador proprietario para Windows, gratuito hoje e para sempre. Abra direto no LIVE, carregue timbres e performances em 12 slots, empilhe ate 8 camadas, divida o teclado e explore dez motores de som, demos musicais, SFZ e SoundFonts.</p>
+  <p class="lead">O Omnitone e um sampler e sintetizador proprietario para Windows, gratuito hoje e para sempre. Abra direto no LIVE, carregue timbres e performances em 12 slots, empilhe ate 8 camadas, ligue o arpejador e explore dez motores de som, mais de 20 performances tematicas e bibliotecas SFZ.</p>
   <div class="cta">
     <a class="btn primary" href="https://github.com/helicleiton/Omnitone/releases/latest/download/Omnitone-Setup.exe">Baixar instalador para Windows</a>
     <a class="btn" href="https://helicleiton.github.io/Omnitone/web/">Experimentar versao Web</a>
@@ -117,7 +117,7 @@
     <a class="btn" href="#instalar">Como instalar</a>
   </div>
   <p class="note">Versao 0.3.5 &middot; Windows 10 e 11 de 64 bits &middot; Android 8 ou superior (beta) &middot; aplicativo e plugin VST3 &middot; sempre gratuito</p>
-  <div class="shot"><img src="screenshot.png" alt="Tela principal do Omnitone: visor, mesa de 8 camadas com faders e VUs, controles de timbre e teclado"></div>
+  <div class="shot"><img src="screenshot.png" alt="Tela TONES do Omnitone: lista de performances, mesa de 8 camadas com faders e VUs, visor de teclado antigo e teclado"></div>
 
   <div class="contact" id="contato">
     <h3>Receba as novidades do Omnitone</h3>
@@ -146,33 +146,32 @@
 
 <h2 id="recursos">Recursos</h2>
 <div class="grid">
-  <div class="card"><h3>8 camadas e splits</h3><p>Cada camada tem volume, mute, solo, VU, faixa de teclas e oitava. Monte um baixo na mao esquerda e um piano na direita, ou empilhe pads.</p></div>
+  <div class="card"><h3>8 camadas</h3><p>Cada camada tem volume, mute, solo, VU e oitava. Empilhe pianos, cordas e pads para criar sons enormes.</p></div>
   <div class="card"><h3>LIVE com 12 slots</h3><p>A tela inicial e um banco de palco retro. Cada slot carrega um tone ou uma performance de fabrica ou sua; as atribuicoes ficam salvas no computador.</p></div>
-  <div class="card"><h3>Dez motores de som</h3><p>SFZ, SoundFont, FM, tonewheel e analógico virtual; agora também wavetable com morph, cordas Karplus–Strong, granular, síntese aditiva e bateria sintetizada.</p></div>
-  <div class="card"><h3>Mapa de teclas</h3><p>Ao selecionar um instrumento SFZ, as teclas com zonas validas ficam destacadas; a faixa respeita o split da camada selecionada.</p></div>
+  <div class="card"><h3>Dez motores de som</h3><p>SFZ, FM, tonewheel e analógico virtual; também wavetable com morph, cordas Karplus–Strong, granular, síntese aditiva e bateria sintetizada.</p></div>
+  <div class="card"><h3>Arpejador</h3><p>Segure um acorde e as notas tocam uma a uma no tempo do BPM: sobe, desce, sobe e desce, aleatorio ou como tocado, de 1 a 4 oitavas, com Hold.</p></div>
   <div class="card"><h3>Controles por timbre</h3><p>Envelope, filtro multimodo com envelope proprio, equalizador de 3 bandas, drive e modulacao (chorus, phaser, tremolo, caixa rotativa) em cada camada.</p></div>
   <div class="card"><h3>Delay e reverb</h3><p>Delay sincronizado ao BPM da DAW ou ao BPM ajustável no Standalone, ou em modo livre. Reverb algoritmico ou por convolucao e limitador na saida.</p></div>
-  <div class="card"><h3>Tones e Performances</h3><p>Salve ajustes de timbre ou combinacoes de camadas. Favoritos, busca (Ctrl+F), preview antes de carregar, biblioteca por categoria/origem e marcacao de teclas.</p></div>
-  <div class="card"><h3>DEMO musical</h3><p>Veja os timbres usados em Noite Neon, Domingo, Horizonte e Garagem; clique numa faixa para carregar o som correspondente.</p></div>
+  <div class="card"><h3>Tones numerados em bancos</h3><p>Cada timbre tem numero (001, 002...) e fica em bancos de 128, como num teclado. Clique duplo carrega; o play ouve antes. Favoritos e busca (Ctrl+F).</p></div>
+  <div class="card"><h3>Performances tematicas</h3><p>Mais de 20 combinacoes prontas: anos 70 e 80, igreja, gospel, jazz, cinema, ambient, Natal, oriental e arpejos. Salve as suas tambem.</p></div>
   <div class="card"><h3>Feito para tocar</h3><p>Controladores MIDI funcionam ao conectar. Enderece knobs e faders do seu teclado com um clique. Rodas de pitch bend e modulacao.</p></div>
   <div class="card"><h3>Baixa latencia</h3><p>Usa os modos de baixa latencia e exclusivo do Windows Audio, sem instalar driver nenhum.</p></div>
   <div class="card"><h3>Navegacao por origem</h3><p>Os timbres sao organizados como em um teclado, por familia de instrumento (Piano, Orgao, Cordas, Synth Lead...), e tambem pelo teclado em que se inspiram.</p></div>
-  <div class="card"><h3>Performance e producao</h3><p>Delay sincronizado ao BPM da DAW ou do app, reverb algoritmico/convolucao, seccoes SYNTH recolhiveis, mapa das 8 camadas e carregamento de SoundFont em segundo plano.</p></div>
+  <div class="card"><h3>Visor de teclado antigo</h3><p>Um visor fluorescente mostra se voce esta num TONE ou numa PERFORMANCE, com nome e categoria. Cada timbre entra com as proprias configuracoes.</p></div>
 </div>
 
 <h2 id="timbres">Timbres</h2>
 <table>
   <tr><th>O que</th><th>Como chega</th><th>Detalhes</th></tr>
-  <tr><td>Timbres de fabrica</td><td>Ja vem no app</td><td>Mais de 160 timbres sem samples externos, em dez motores: analogicos, tonewheel, FM, wavetable, Karplus-Strong, granular, aditivo e bateria sintetizada, alem de SFZ. Inclui a colecao Timbres Famosos, teclados lendarios e 12 Performances prontas.</td></tr>
-  <tr><td>Bibliotecas gratuitas</td><td>Um clique no app</td><td>O botao <b>Baixar bibliotecas</b> traz pianos de cauda, piano eletrico, orquestra completa, baterias acusticas, saxofones, guitarras, baixos e um General MIDI inteiro. Sao baixadas do site de cada autor; algumas tem varios GB.</td></tr>
+  <tr><td>Timbres de fabrica</td><td>Ja vem no app</td><td>Mais de 160 timbres sem samples externos, em dez motores: analogicos, tonewheel, FM, wavetable, Karplus-Strong, granular, aditivo e bateria sintetizada, alem de SFZ. Inclui a colecao Timbres Famosos, teclados lendarios e 22 Performances prontas.</td></tr>
+  <tr><td>Bibliotecas gratuitas</td><td>Um clique no app</td><td>O botao <b>Baixar bibliotecas</b> traz pianos de cauda, piano eletrico, orquestra completa, baterias acusticas, saxofones, guitarras, baixos e mais. Sao baixadas do site de cada autor; algumas tem varios GB.</td></tr>
   <tr><td>Bibliotecas SFZ</td><td>Voce instala</td><td>Qualquer instrumento em SFZ: pianos, orquestra, baterias, guitarras. Ha varias bibliotecas livres, como VCSL, VSCO 2 e Salamander Grand Piano.</td></tr>
-  <tr><td>SoundFonts</td><td>Voce instala</td><td>Arquivos .sf2: cada preset vira um timbre, classificado pela familia do General MIDI.</td></tr>
   <tr><td>Bancos FM</td><td>Voce instala</td><td>Bancos .syx de 32 vozes no formato DX7 e colecoes de vozes de 4 operadores no formato Reface DX.</td></tr>
 </table>
-<p class="note">O Omnitone nao distribui bibliotecas de amostras, SoundFonts, bancos de vozes nem fotos de terceiros. Cada um tem a sua licenca.</p>
+<p class="note">O Omnitone nao distribui bibliotecas de amostras, bancos de vozes nem fotos de terceiros. Cada um tem a sua licenca.</p>
 
 <h2 id="demos">Demos</h2>
-<p>Quatro composicoes originais feitas so com timbres que ja vem no Omnitone. Na aba <b>DEMO</b> do app, cada faixa identifica o tone usado e permite carrega-lo; a pagina tambem permite ouvir a mix e ajustar canais.</p>
+<p>Quatro composicoes originais feitas so com timbres que ja vem no Omnitone. Ouca a mix ou ajuste cada canal para escutar os timbres separadamente.</p>
 <div class="demos" id="lista-demos"></div>
 <p class="note">As demos sao composicoes originais, tocadas e mixadas pelo proprio Omnitone, sem amostras nem efeitos de fora.</p>
 
